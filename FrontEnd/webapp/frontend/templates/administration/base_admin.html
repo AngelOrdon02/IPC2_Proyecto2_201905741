@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- <title>Usuarios - Administrador</title> -->
+    {% block title %}{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <!-- Icono -->
+    <link rel="icon" type="image/x-icon" href="https://cdn.pixabay.com/photo/2014/04/02/14/08/mouse-306274_960_720.png">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <script type="text/javascript" src="{% static 'scripts/script.js' %}"></script>
+    <!-- Alertas -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Reportes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.13/dist/jspdf.plugin.autotable.js"></script>
+    <!-- Controlador -->
+    <!-- <script type="text/javascript" src="../../scripts/administration/songsController.js"></script> -->
+
+</head>
+
+<body>
+
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+        <div class="ui container">
+            <a class="active item">Home</a>
+            <a class="item">Work</a>
+            <a class="item">Company</a>
+            <a class="item">Careers</a>
+            <div class="right menu">
+                <div class="item">
+                    <a class="ui button">Log in</a>
+                </div>
+                <div class="item">
+                    <a class="ui primary button">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar menu">
+        <a class="active item">Home</a>
+        <a class="item">Work</a>
+        <a class="item">Company</a>
+        <a class="item">Careers</a>
+        <a class="item">Login</a>
+        <a class="item">Signup</a>
+    </div>
+
+
+    <!-- Page Contents -->
+    <div class="pusher">
+        <!-- <div class="ui inverted vertical masthead center aligned segment"> -->
+        <div class="ui inverted vertical center aligned segment">
+
+            <div class="ui container">
+                <div class="ui large secondary inverted pointing menu">
+                    <a class="toc item">
+                        <i class="sidebar icon"></i>
+                    </a>
+                    <!-- <a class="item" onclick="goPrincipalView()">Principal</a> -->
+                    <!-- <a class="item" onclick="goRequestsView()">Solicitudes</a> -->
+                    <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Config (XML)</a>
+                    <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
+                    <a class="{% block active3 %}{% endblock %} item" onclick="goResourcesView()">Recursos</a>
+                    <a class="{% block active4 %}{% endblock %} item" onclick="goCategoriesView()">Categorias</a>
+                    <a class="{% block active5 %}{% endblock %} item" onclick="goSettingsView()">Configuraciones</a>
+                    <a class="{% block active6 %}{% endblock %} item" onclick="goInstancesView()">Instancias</a>
+                    <a class="{% block active_help %}{% endblock %} item" onclick="goHelpView()">Ayuda</a>
+                    <label class="right item"></label>
+                    <label class="right item"></label>
+                    <label class="right item"></label>
+                    <label class="right item"></label>
+                    <div id="username_label">
+                        <!-- <label class="right item">Nombre del usuario</label> -->
+                    </div>
+                    <div class="right item">
+                        <!-- <a class="ui inverted button">Log in</a> -->
+                        <a class="ui inverted button" onclick="logout()">Cerrar sesión</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui text container">
+                <h1 class="ui inverted header">
+                    <!-- Estatus de usuarios -->
+                    {% block titlepage %}{% endblock %}
+                </h1>
+                <!-- <h2>Do whatever you want when you want to.</h2> -->
+            </div>
+
+        </div>
+
+        <div class="ui vertical stripe">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="one wide column"></div>
+                    <div class="fourteen wide column">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    <div class="one wide column"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="ui inverted vertical footer segment">
+            <div class="ui container">
+                <div class="ui stackable inverted divided equal height stackable grid">
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">USAC</h4>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">IPC 2 "D"</h4>
+                    </div>
+                    <div class="seven wide column">
+                        <h4 class="ui inverted header">Proyecto 3</h4>
+                        <p>Angel Geovanny Ordon Colchaj - 201905741</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function logout() {
+        var session_id = ""
+        var session_username = ""
+
+        sessionStorage.setItem("session_id", session_id)
+        sessionStorage.setItem("session_username", session_username)
+
+        swal("¡Sección cerrada!", "Gracias por su preferencia", "success")
+            .then((value) => {
+                location.href = "http://localhost:8000"
+            });
+
+    }
+
+    // -------------------- Metodos de carga --------------------
+
+    // ---------- Configuracion ----------
+    function fileUpload_file() {
+        let selected = document.getElementById("file_1").files[0];
+
+        let reader = new FileReader();
+        reader.addEventListener("loadend", () => {
+            document.getElementById("xmldata").innerHTML = reader.result;
+        });
+        reader.readAsText(selected);
+    }
+
+    async function fileUpload_1() {
+        
+        var xmldata = document.getElementById('xmldata').value
+        var data = {
+            'data' : xmldata
+        }
+        // console.log("data: " + xmldata);
+        
+        fetch('http://localhost:3000/msg_config', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .then(res => console.log(res));
+    }
+
+    // ---------- Consumo ----------
+    function fileUpload_file_2() {
+        let selected = document.getElementById("file_2").files[0];
+
+        let reader = new FileReader();
+        reader.addEventListener("loadend", () => {
+            document.getElementById("xmldata_2").innerHTML = reader.result;
+        });
+        reader.readAsText(selected);
+    }
+
+    async function fileUpload_2() {
+        
+        var xmldata = document.getElementById('xmldata_2').value
+        var data = {
+            'data' : xmldata
+        }
+        // console.log("data: " + xmldata);
+        
+        fetch('http://localhost:3000/msg_consumption', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .then(res => console.log(res));
+    }
+
+    // ------------------------------------------------------------
+
+    function goConfigView() {
+        location.href = "http://localhost:8000/setting"
+    }
+
+    function goUsersView() {
+        location.href = "http://localhost:8000/users"
+    }
+
+    function newUser() {
+        location.href = "http://localhost:8000/user_new"
+    }
+
+    function goResourcesView() {
+        location.href = "http://localhost:8000/resources"
+    }
+
+    function newResource() {
+        location.href = "http://localhost:8000/resource_new"
+    }
+
+    function goCategoriesView() {
+        location.href = "http://localhost:8000/categories"
+    }
+
+    function newCategory() {
+        location.href = "http://localhost:8000/category_new"
+    }
+
+    function goSettingsView() {
+        location.href = "http://localhost:8000/settings"
+    }
+
+    function newSetting() {
+        location.href = "http://localhost:8000/setting_new"
+    }
+
+    function goInstancesView() {
+        location.href = "http://localhost:8000/instances"
+    }
+
+    function newInstance() {
+        location.href = "http://localhost:8000/instance_new"
+    }
+
+    function goHelpView() {
+        location.href = "http://localhost:8000/help"
+    }
+</script>
+
+</html>

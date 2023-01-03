@@ -1,0 +1,56 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Nuevo usuario - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active2 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Creación de usuario{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <h3>Datos del usuario:</h3>
+            <form class="ui form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="field">
+                    <label>Id</label>
+                    <input type="text" id="id" name="id" placeholder="Id">
+                </div>
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre">
+                </div>
+                <div class="field">
+                    <label>NIT</label>
+                    <input type="text" id="nit" name="nit" placeholder="NIT">
+                </div>
+                <div class="field">
+                    <label>Dirección</label>
+                    <input type="text" id="address" name="address" placeholder="Dirección">
+                </div>
+                <div class="field">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Correo electrónico">
+                </div>
+                <div class="field">
+                    <label>Nombre de usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+                </div>
+                <div class="field">
+                    <label>Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Contraseña">
+                </div>
+                <div class="position_right">
+                    <button class="large ui green button" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+</div>
+{% endblock %}

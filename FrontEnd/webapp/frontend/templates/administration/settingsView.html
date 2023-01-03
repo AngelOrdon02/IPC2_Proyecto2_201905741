@@ -1,0 +1,52 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Configuraciones - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active5 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de configuraciones{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Configuraciones</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newSetting()">
+                <i class="user plus icon"></i>
+                Nueva configuración
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">Id</th>
+            <th class="centered">Nombre</th>
+            <th class="centered">Descripción</th>
+            <th class="centered">Dimensional</th>
+            <th class="centered">Costo</th>
+            <th class="centered">Categoría</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for setting in settings %} 
+        <tr>
+            <td class="centerd">{{ setting.id }}</td>
+            <td class="centerd">{{ setting.name }}</td>
+            <td class="centerd">{{ setting.description }}</td>
+            <td class="centerd">{{ setting.dimensional }}</td>
+            <td class="centerd">{{ setting.cost }}</td>
+            <td class="centerd">{{ setting.id_category }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

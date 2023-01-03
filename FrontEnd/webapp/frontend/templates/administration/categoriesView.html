@@ -1,0 +1,48 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Categorías - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active4 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de categorías{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Categorías</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newCategory()">
+                <i class="user plus icon"></i>
+                Nueva categoría
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">Id</th>
+            <th class="centered">Nombre</th>
+            <th class="centered">Descripción</th>
+            <th class="centered">Carga</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %} 
+        <tr>
+            <td class="centerd">{{ category.id }}</td>
+            <td class="centerd">{{ category.name }}</td>
+            <td class="centerd">{{ category.description }}</td>
+            <td class="centerd">{{ category.load }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

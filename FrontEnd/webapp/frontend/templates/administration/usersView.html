@@ -1,0 +1,50 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Usuarios - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active2 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de usuarios{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Usuarios</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newUser()">
+                <i class="user plus icon"></i>
+                Nuevo usuario
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">NIT</th>
+            <th class="centered">Nombre</th>
+            <th class="centered">Dirección</th>
+            <th class="centered">Nombre de usuario</th>
+            <th class="centered">Correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %} 
+        <tr>
+            <td class="centerd">{{ user.nit }}</td>
+            <td class="centerd">{{ user.name }}</td>
+            <td class="centerd">{{ user.address }}</td>
+            <td class="centerd">{{ user.username }}</td>
+            <td class="centerd">{{ user.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

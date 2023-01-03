@@ -1,0 +1,56 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Nuevo recurso - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active3 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Creación de recurso{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <h3>Datos del recurso:</h3>
+            <form class="ui form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="field">
+                    <label>Id</label>
+                    <input type="text" id="id" name="id" placeholder="Id">
+                </div>
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre">
+                </div>
+                <div class="field">
+                    <label>Abreviatura</label>
+                    <input type="text" id="abbreviation" name="abbreviation" placeholder="Abreviatura">
+                </div>
+                <div class="field">
+                    <label>Métrica</label>
+                    <input type="text" id="metrics" name="metrics" placeholder="Métrica">
+                </div>
+                <div class="field">
+                    <label>Tipo</label>
+                    <input type="text" id="type" name="type" placeholder="Tipo">
+                </div>
+                <div class="field">
+                    <label>Valor por hora</label>
+                    <input type="text" id="worth" name="worth" placeholder="Valor por hora">
+                </div>
+                <div class="field">
+                    <label>Configuración</label>
+                    <input type="text" id="id_config" name="id_config" placeholder="Id configuración">
+                </div>
+                <div class="position_right">
+                    <button class="large ui green button" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+</div>
+{% endblock %}

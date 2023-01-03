@@ -1,0 +1,54 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Instancias - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active6 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de Instancias{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Instancias</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newInstance()">
+                <i class="user plus icon"></i>
+                Nueva Instancia
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">Id</th>
+            <th class="centered">Nombre</th>
+            <th class="centered">Estado</th>
+            <th class="centered">Inicio</th>
+            <th class="centered">Fin</th>
+            <th class="centered">Configuración</th>
+            <th class="centered">Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for instance in instances %} 
+        <tr>
+            <td class="centerd">{{ instance.id }}</td>
+            <td class="centerd">{{ instance.name }}</td>
+            <td class="centerd">{{ instance.condition }}</td>
+            <td class="centerd">{{ instance.start }}</td>
+            <td class="centerd">{{ instance.end }}</td>
+            <td class="centerd">{{ instance.id_config }}</td>
+            <td class="centerd">{{ instance.id_user }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Ayuda - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active_help %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de usuarios{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="ui grid">
+    <div class="row">
+        <div class="two wide column"></div>
+        <div class="twelve wide column">
+            <h3>Documentación:</h3>
+            <!-- <embed src="../../../../../documentation/Ensayo.pdf" type="application/pdf" width="100%" height="100%" /> -->
+            <iframe src="{% static 'resources/Ensayo.pdf' %}" height="100%" width="100%" style="height: 700px;"></iframe>
+        </div>
+        <div class="two wide column"></div>
+    </div>
+
+    <div class="ui horizontal divider">&nbsp;</div>
+
+    <div class="row">
+        <div class="two wide column"></div>
+        <div class="twelve wide column">
+            <h3>Datos del desarrollador:</h3>
+            <p>Angel Geovanny Ordón Colchaj</p>
+            <p>201905741</p>
+        </div>
+        <div class="two wide column"></div>
+    </div>
+</div>
+{% endblock %}

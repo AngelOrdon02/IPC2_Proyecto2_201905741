@@ -1,0 +1,68 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Configuración - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active1 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Configuración{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Carga de configuraciones</h3>
+        </div>
+    </div>
+
+    <div class="ui horizontal divider">
+        Enviar mensaje de configuración
+    </div>
+
+    <div class="row">
+        <div class="thirteen wide column">
+            <div class="position_right">
+                <input type="file" id="file_1" name="file_1" accept="text/xml" onchange="fileUpload_file()">
+                    <button class="ui green button" onclick="fileUpload_1()">
+                        <i class="cloud upload icon"></i>
+                        Cargar archivo al sistema
+                    </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="thirteen wide column">
+            <div class="position_right">
+                <textarea id="xmldata" name="xmldata" rows="20" cols="70"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui horizontal divider">
+        Enviar mensaje de consumo
+    </div>
+
+    <div class="row">
+        <div class="eleven wide column">
+            <div class="position_right">
+                <input type="file" id="file_2" name="file_2" accept="text/xml" onchange="fileUpload_file_2()">
+                <button class="ui green button" onclick="fileUpload_2()">
+                    <i class="cloud upload icon"></i>
+                    Cargar archivo al sistema
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="thirteen wide column">
+            <div class="position_right">
+                <textarea id="xmldata_2" name="xmldata_2" rows="20" cols="70"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Nueva configuración - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active5 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Creación de configuración{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <h3>Datos de la configuración:</h3>
+            <form class="ui form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="field">
+                    <label>Id</label>
+                    <input type="text" id="id" name="id" placeholder="Id">
+                </div>
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre">
+                </div>
+                <div class="field">
+                    <label>Descripción</label>
+                    <input type="text" id="description" name="description" placeholder="Descripción">
+                </div>
+                <div class="field">
+                    <label>Dimensional</label>
+                    <input type="text" id="dimensional" name="dimensional" placeholder="Dimensional">
+                </div>
+                <div class="field">
+                    <label>Costo</label>
+                    <input type="number" id="cost" name="cost" placeholder="Cost">
+                </div>
+                <div class="field">
+                    <label>Categoría</label>
+                    <input type="text" id="id_category" name="id_category" placeholder="Id categoría">
+                </div>
+                <div class="position_right">
+                    <button class="large ui green button" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+</div>
+{% endblock %}
