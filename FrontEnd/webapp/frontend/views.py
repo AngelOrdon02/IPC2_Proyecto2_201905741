@@ -83,6 +83,38 @@ def add_user(request):
 
     return render(request, "administration/userNewView.html", {})
 
+# Metodo para la vista businessView.html
+def business(request):
+
+    response = requests.get('http://127.0.0.1:3000/business')
+
+    business_array = response.json()
+
+    return render(request, "administration/businessView.html", {'business_array': business_array['business']})
+
+# Create business
+def add_business(request):
+    
+    if request.method == 'POST':
+        # id = request.POST.get('id', None)
+        name = request.POST.get('name', None)
+
+        params = {
+            # 'id': id,
+            'name': name
+            }
+        response = requests.post('http://127.0.0.1:3000/business', json = params)
+        
+        res = response.json()
+
+        return redirect('business')
+
+    return render(request, "administration/businessNewView.html", {})
+
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
 # Metodo para la vista settingView.html
 def setting(request):
     return render(request, "administration/settingView.html", {})

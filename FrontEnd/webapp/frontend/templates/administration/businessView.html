@@ -1,0 +1,44 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Empresas - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active3 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de empresas{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Empresas</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newBusiness()">
+                <i class="user plus icon"></i>
+                Nueva empresa
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">Id</th>
+            <th class="centered">Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for business in business_array %} 
+        <tr>
+            <td class="centerd">{{ business.id }}</td>
+            <td class="centerd">{{ business.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

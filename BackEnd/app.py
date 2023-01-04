@@ -27,6 +27,8 @@ Category = []
 # Datos ingresados
 Users.append(User(1, 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root', 'root', 1))
 
+Business_array.append(Business(1, "AGOC"))
+
 # --------------- INICIO RUTAS ---------------
 
 @app.route('/', methods=['GET'])
@@ -99,6 +101,9 @@ def selectAllUsers():
         Fact = {
             'id': user.getId(),
             'name': user.getName(),
+            'nit': user.getNit(),
+            'address': user.getAddress(),
+            'email': user.getEmail(),
             'username': user.getUsername(),
             'password': user.getPassword(),
             'user_type': user.getUser_type()
@@ -107,6 +112,70 @@ def selectAllUsers():
     
     answer = jsonify({'users': Data})
     #answer = jsonify(Data)
+
+    return (answer)
+
+# Post user
+@app.route('/users', methods=['POST'])
+def insertUser():
+    global Users
+
+    # obteniendo el ultimo id para tener un correlativo
+    user = Users[-1]
+    position = user.getId() + 1
+
+    new = User(
+        # request.json['id'],
+        position,
+        request.json['name'],
+        request.json['nit'],
+        request.json['address'],
+        request.json['email'],
+        request.json['username'],
+        request.json['password'],
+        request.json['user_type']
+    )
+    Users.append(new)
+    answer = jsonify({'message': 'Added user'})
+
+    return (answer)
+
+# --------------- Business ---------------
+
+# Get business
+@app.route('/business', methods=['GET'])
+def selectAllBusiness():
+    global Business_array
+    Data = []
+
+    for business_i in Business_array:
+        Fact = {
+            'id': business_i.getId(),
+            'name': business_i.getName()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'business': Data})
+    #answer = jsonify(Data)
+
+    return (answer)
+
+# Post business
+@app.route('/business', methods=['POST'])
+def insertBusiness():
+    global Business_array
+
+    # obteniendo el ultimo id para tener un correlativo
+    business_one = Business_array[-1]
+    position = business_one.getId() + 1
+
+    new = Business(
+        # request.json['id'],
+        position,
+        request.json['name']
+    )
+    Business_array.append(new)
+    answer = jsonify({'message': 'Added business'})
 
     return (answer)
 

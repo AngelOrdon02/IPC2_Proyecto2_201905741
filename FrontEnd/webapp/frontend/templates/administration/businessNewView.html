@@ -1,0 +1,36 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Nueva empresa - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active3 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Creación de empresa{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <h3>Datos de la empresa:</h3>
+            <form class="ui form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- <div class="field">
+                    <label>Id</label>
+                    <input type="text" id="id" name="id" placeholder="Id">
+                </div> -->
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre">
+                </div>
+                <div class="position_right">
+                    <button class="large ui green button" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+</div>
+{% endblock %}
