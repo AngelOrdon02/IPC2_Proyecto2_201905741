@@ -32,6 +32,9 @@ Users.append(User(1, 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root',
 
 Business_array.append(Business(1, 'A001', "AGOC"))
 
+Playlists.append(Playlist(1, 55555, 'Salsa', 55555, 100, 50))
+# Playlist_song_array.append(Playlist(1, 55555, 'Salsa', 55555, 100, 50))
+
 # --------------- INICIO RUTAS ---------------
 
 @app.route('/', methods=['GET'])
@@ -184,6 +187,28 @@ def insertBusiness():
 
     return (answer)
 
+# --------------- Playlist ---------------
+
+# Get playlists
+@app.route('/playlists', methods=['GET'])
+def selectAllPlaylists():
+    global Playlists
+    Data = []
+
+    for playlist in Playlists:
+        Fact = {
+            'id': playlist.getId(),
+            'nit_user': playlist.getNit_user(),
+            'id_category': playlist.getId_category(),
+            'vinyl': playlist.getVinyl(),
+            'compact': playlist.getCompact()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'playlists': Data})
+
+    return (answer)
+
 # --------------- Carga Masiva ---------------
 
 # msg_config
@@ -191,6 +216,7 @@ def insertBusiness():
 def msg_config():
     global Users
     global Business_array
+    global Playlists
     
     # Codigo
     # data = request.json()
@@ -214,7 +240,7 @@ def msg_config():
 
         business_data = root[2]
 
-        '''
+        
         for r in playlist_clients:
 
             # Playlist
@@ -222,6 +248,22 @@ def msg_config():
             vinyl_xml = r[1]
             compact_xml = r[2]
             category_xml = r[3]
+
+            playlist_one = Playlists[-1]
+            position = playlist_one.getId() + 1
+
+            new_playlist = Playlist(
+                # request.json['id'],
+                position,
+                nit_xml.text,
+                category_xml.text,
+                nit_xml.text,
+                vinyl_xml.tail,
+                compact_xml.tail
+                # vinyl_xml.text,
+                # compact_xml.text
+            )
+            Playlists.append(new_playlist)
 
             # Canciones
             songs_data = r.text.replace('\n', '')
@@ -240,7 +282,7 @@ def msg_config():
                 print("song name: ", str(gender_song.text))
 
             # print("var: ", str(nit_xml.text))
-        '''
+        
         for r in clients_data:
             nit_client = r.attrib['nit']
             name_client = r[0]

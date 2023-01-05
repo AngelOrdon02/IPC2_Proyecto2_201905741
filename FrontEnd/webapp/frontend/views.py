@@ -113,6 +113,15 @@ def add_business(request):
 
     return render(request, "administration/businessNewView.html", {})
 
+# Metodo para la vista playlistView.html
+def playlist(request):
+
+    response = requests.get('http://127.0.0.1:3000/playlists')
+
+    playlists = response.json()
+
+    return render(request, "administration/playlistView.html", {'playlists': playlists['playlists']})
+
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------

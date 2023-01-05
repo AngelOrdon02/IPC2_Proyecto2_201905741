@@ -1,0 +1,50 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Playlists - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active4 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de playlists{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Playlists</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="five wide column">
+            <button class="ui green button" onclick="newBusiness()">
+                <i class="user plus icon"></i>
+                Nueva playlist
+            </button>
+        </div>
+    </div>
+</div>
+<table class="ui fixed black celled table">
+    <thead>
+        <tr>
+            <th class="centered">Id</th>
+            <th class="centered">NIT</th>
+            <th class="centered">Categoria</th>
+            <th class="centered">Vinyl</th>
+            <th class="centered">Compacto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for playlist in playlists %} 
+        <tr>
+            <td class="centerd">{{ playlist.id }}</td>
+            <td class="centerd">{{ playlist.nit_user }}</td>
+            <td class="centerd">{{ playlist.id_category }}</td>
+            <td class="centerd">{{ playlist.vinyl }}</td>
+            <td class="centerd">{{ playlist.compact }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

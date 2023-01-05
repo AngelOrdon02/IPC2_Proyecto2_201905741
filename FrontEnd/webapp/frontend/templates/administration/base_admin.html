@@ -76,7 +76,7 @@
                     <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Config (XML)</a>
                     <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
                     <a class="{% block active3 %}{% endblock %} item" onclick="goBusinessView()">Empresas</a>
-                    <!-- <a class="{% block active4 %}{% endblock %} item" onclick="goCategoriesView()">Categorias</a> -->
+                    <a class="{% block active4 %}{% endblock %} item" onclick="goPlaylistsView()">Playlists</a>
                     <!-- <a class="{% block active5 %}{% endblock %} item" onclick="goSettingsView()">Configuraciones</a> -->
                     <!-- <a class="{% block active6 %}{% endblock %} item" onclick="goInstancesView()">Instancias</a> -->
                     <a class="{% block active_help %}{% endblock %} item" onclick="goHelpView()">Ayuda</a>
@@ -236,9 +236,9 @@
         location.href = "http://localhost:8000/business_new"
     }
 
-    // function goCategoriesView() {
-    //     location.href = "http://localhost:8000/categories"
-    // }
+    function goPlaylistsView() {
+        location.href = "http://localhost:8000/playlists"
+    }
 
     // function newCategory() {
     //     location.href = "http://localhost:8000/category_new"
