@@ -122,6 +122,16 @@ def playlist(request):
 
     return render(request, "administration/playlistView.html", {'playlists': playlists['playlists']})
 
+# Metodo para la vista songsView.html
+def songs(request):
+
+    response = requests.get('http://127.0.0.1:3000/songs')
+
+    songs = response.json()
+
+    return render(request, "administration/songsView.html", {'songs': songs['songs']})
+
+
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------

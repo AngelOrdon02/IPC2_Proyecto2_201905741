@@ -5,16 +5,18 @@
 - año (year)
 - artista (artist)
 - genero (gender)
+- costo (cost)
 '''
 
 class Song:
 
-    def __init__(self, id, name, year, artist, gender):
+    def __init__(self, id, name, year, artist, gender, cost):
         self.id = id
         self.name = name
         self.year = year
         self.artist = artist
         self.gender = gender
+        self.cost = cost
     
     # Metodos GET y SET
     # id
@@ -51,3 +53,10 @@ class Song:
     
     def setGender(self, gender):
         self.gender = gender
+
+    # cost
+    def getCost(self):
+        return self.cost
+    
+    def setCost(self, cost):
+        self.cost = cost

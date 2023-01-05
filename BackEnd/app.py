@@ -33,7 +33,8 @@ Users.append(User(1, 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root',
 Business_array.append(Business(1, 'A001', "AGOC"))
 
 Playlists.append(Playlist(1, 55555, 'Salsa', 55555, 100, 50))
-# Playlist_song_array.append(Playlist(1, 55555, 'Salsa', 55555, 100, 50))
+
+Songs.append(Song(1, 'Plein De Bisous', 2018, 'Lewis OfMan y Milena Leblanc', 'Dance/Electronica', 15))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -209,6 +210,30 @@ def selectAllPlaylists():
 
     return (answer)
 
+# --------------- Song ---------------
+
+# Get songs
+@app.route('/songs', methods=['GET'])
+def selectAllSongs():
+    global Songs
+    Data = []
+
+    for song in Songs:
+        Fact = {
+            'id': song.getId(),
+            'name': song.getName(),
+            'year': song.getYear(),
+            'artist': song.getArtist(),
+            'gender': song.getGender(),
+            'cost': song.getCost()
+        }
+        Data.append(Fact)
+    
+    #answer = jsonify(Data)
+    answer = jsonify({'songs': Data})
+
+    return (answer)
+
 # --------------- Carga Masiva ---------------
 
 # msg_config
@@ -217,6 +242,7 @@ def msg_config():
     global Users
     global Business_array
     global Playlists
+    global Songs
     
     # Codigo
     # data = request.json()
@@ -275,11 +301,27 @@ def msg_config():
                 artist_song = song[2]
                 gender_song = song[3]
 
+                cost = song[1].tail.replace('\n', '')
+
                 # Add song in list Songs[]
-                print("song name: ", str(name_song.text))
-                print("song name: ", str(year_song.text))
-                print("song name: ", str(artist_song.text))
-                print("song name: ", str(gender_song.text))
+                # print("song name: ", str(name_song.text))
+                # print("song name: ", str(year_song.text))
+                # print("song name: ", str(artist_song.text))
+                # print("song name: ", str(gender_song.text))
+
+                song_one = Songs[-1]
+                position = song_one.getId() + 1
+
+                new_song = Song(
+                    # request.json['id'],
+                    position,
+                    name_song.text,
+                    year_song.text,
+                    artist_song.text,
+                    gender_song.text,
+                    cost.strip()
+                )
+                Songs.append(new_song)
 
             # print("var: ", str(nit_xml.text))
         

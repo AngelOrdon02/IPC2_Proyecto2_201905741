@@ -14,6 +14,7 @@ urlpatterns = [
     path('business', views.business, name = 'business'),
     path('business_new', views.add_business, name = 'business_new'),
     path('playlists', views.playlist, name = 'playlist'),
+    path('songs', views.songs, name = 'songs'),
     # path('categories', views.categories, name = 'categories'),
     # path('category_new', views.add_category, name = 'category_new'),
     # path('settings', views.settings, name = 'settings'),
