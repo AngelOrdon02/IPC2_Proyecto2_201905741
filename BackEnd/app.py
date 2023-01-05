@@ -2,6 +2,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+# from tkinter.tix import Tree
+from xml.etree import ElementTree as ET
+
 import json
 
 # Importando modelos
@@ -27,7 +30,7 @@ Category = []
 # Datos ingresados
 Users.append(User(1, 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root', 'root', 1))
 
-Business_array.append(Business(1, "AGOC"))
+Business_array.append(Business(1, 'A001', "AGOC"))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -151,6 +154,7 @@ def selectAllBusiness():
     for business_i in Business_array:
         Fact = {
             'id': business_i.getId(),
+            'code': business_i.getCode(),
             'name': business_i.getName()
         }
         Data.append(Fact)
@@ -172,11 +176,126 @@ def insertBusiness():
     new = Business(
         # request.json['id'],
         position,
+        request.json['code'],
         request.json['name']
     )
     Business_array.append(new)
     answer = jsonify({'message': 'Added business'})
 
+    return (answer)
+
+# --------------- Carga Masiva ---------------
+
+# msg_config
+@app.route('/msg_config', methods=['POST'])
+def msg_config():
+    global Users
+    global Business_array
+    
+    # Codigo
+    # data = request.json()
+    data_answer = request.json['data']
+    
+    if (data_answer == ''):
+        answer = jsonify({'message': 'None data'})
+    else:
+        # xml = data_answer.data.decode('utf-8')
+        # raiz = ET.XML(data_answer)
+        # for elemento in raiz:
+        #     # (elemento.attrib['name'],elemento.attrib['artist'],elemento.attrib['image'],elemento.text)
+        #     pass
+        #     print("-> ", elemento.attrib['id'])
+
+        root = ET.XML(data_answer)
+
+        playlist_clients = root[0]
+
+        clients_data = root[1]
+
+        business_data = root[2]
+
+        '''
+        for r in playlist_clients:
+
+            # Playlist
+            nit_xml = r[0]
+            vinyl_xml = r[1]
+            compact_xml = r[2]
+            category_xml = r[3]
+
+            # Canciones
+            songs_data = r.text.replace('\n', '')
+            songs_data = r[4]
+            
+            for song in songs_data:
+                name_song = song[0]
+                year_song = song[1]
+                artist_song = song[2]
+                gender_song = song[3]
+
+                # Add song in list Songs[]
+                print("song name: ", str(name_song.text))
+                print("song name: ", str(year_song.text))
+                print("song name: ", str(artist_song.text))
+                print("song name: ", str(gender_song.text))
+
+            # print("var: ", str(nit_xml.text))
+        '''
+        for r in clients_data:
+            nit_client = r.attrib['nit']
+            name_client = r[0]
+            username_client = r[1]
+            password_client = r[2]
+            address_client = r[3]
+            email_client = r[4]
+            user_type_client = 2 # Usuario normal
+
+
+            # print("var: ", str(nit_client))
+            # print("var: ", str(name_client.text))
+
+            # global Users
+
+            # obteniendo el ultimo id para tener un correlativo
+            user = Users[-1]
+            position = user.getId() + 1
+
+            new = User(
+                # request.json['id'],
+                position,
+                name_client.text,
+                nit_client,
+                address_client.text,
+                email_client.text,
+                username_client.text,
+                password_client.text,
+                user_type_client
+            )
+            Users.append(new)
+
+            # Users.append(User(position, name_client, nit_client, address_client, email_client, username_client, password_client, user_type_client))
+        
+        for r in business_data:
+            code_business = r.attrib['id']
+            name_business = r[0]
+
+            # obteniendo el ultimo id para tener un correlativo
+            business_one = Business_array[-1]
+            position = business_one.getId() + 1
+
+            new = Business(
+                # request.json['id'],
+                position,
+                code_business,
+                name_business.text
+            )
+            Business_array.append(new)
+
+        # for r in root:
+        #     variable = r[0][0]
+        #     print("var: ", str(variable.text))
+
+        answer = jsonify({'message': data_answer})
     return (answer)
 
 # --------------- FIN RUTAS ---------------

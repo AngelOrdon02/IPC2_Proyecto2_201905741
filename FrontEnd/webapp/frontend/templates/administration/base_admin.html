@@ -186,33 +186,33 @@
     }
 
     // ---------- Consumo ----------
-    function fileUpload_file_2() {
-        let selected = document.getElementById("file_2").files[0];
+    // function fileUpload_file_2() {
+    //     let selected = document.getElementById("file_2").files[0];
 
-        let reader = new FileReader();
-        reader.addEventListener("loadend", () => {
-            document.getElementById("xmldata_2").innerHTML = reader.result;
-        });
-        reader.readAsText(selected);
-    }
+    //     let reader = new FileReader();
+    //     reader.addEventListener("loadend", () => {
+    //         document.getElementById("xmldata_2").innerHTML = reader.result;
+    //     });
+    //     reader.readAsText(selected);
+    // }
 
-    async function fileUpload_2() {
+    // async function fileUpload_2() {
         
-        var xmldata = document.getElementById('xmldata_2').value
-        var data = {
-            'data' : xmldata
-        }
-        // console.log("data: " + xmldata);
+    //     var xmldata = document.getElementById('xmldata_2').value
+    //     var data = {
+    //         'data' : xmldata
+    //     }
+    //     // console.log("data: " + xmldata);
         
-        fetch('http://localhost:3000/msg_consumption', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-        }).then(res => res.json())
-        .then(res => console.log(res));
-    }
+    //     fetch('http://localhost:3000/msg_consumption', {
+    //     method: 'POST',
+    //     body: JSON.stringify(data),
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    //     }).then(res => res.json())
+    //     .then(res => console.log(res));
+    // }
 
     // ------------------------------------------------------------
 

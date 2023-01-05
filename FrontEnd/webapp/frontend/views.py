@@ -97,10 +97,12 @@ def add_business(request):
     
     if request.method == 'POST':
         # id = request.POST.get('id', None)
+        code = request.POST.get('code', None)
         name = request.POST.get('name', None)
 
         params = {
             # 'id': id,
+            'code': code,
             'name': name
             }
         response = requests.post('http://127.0.0.1:3000/business', json = params)

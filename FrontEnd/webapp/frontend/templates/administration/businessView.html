@@ -29,6 +29,7 @@
     <thead>
         <tr>
             <th class="centered">Id</th>
+            <th class="centered">Código</th>
             <th class="centered">Nombre</th>
         </tr>
     </thead>
@@ -36,6 +37,7 @@
         {% for business in business_array %} 
         <tr>
             <td class="centerd">{{ business.id }}</td>
+            <td class="centerd">{{ business.code }}</td>
             <td class="centerd">{{ business.name }}</td>
         </tr>
         {% endfor %}
