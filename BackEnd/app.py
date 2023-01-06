@@ -28,7 +28,7 @@ Business_array = []
 Category = []
 
 # Datos ingresados
-Users.append(User(1, 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root', 'root', 1))
+Users.append(User(1, 'A001', 'Angel Ordon', 55555, 'Zona 18', 'angel@email.com', 'root', 'root', 1))
 
 Business_array.append(Business(1, 'A001', "AGOC"))
 
@@ -107,6 +107,7 @@ def selectAllUsers():
     for user in Users:
         Fact = {
             'id': user.getId(),
+            'code_business': user.getCode_business(),
             'name': user.getName(),
             'nit': user.getNit(),
             'address': user.getAddress(),
@@ -134,6 +135,7 @@ def insertUser():
     new = User(
         # request.json['id'],
         position,
+        request.json['code_business'],
         request.json['name'],
         request.json['nit'],
         request.json['address'],
@@ -338,6 +340,7 @@ def msg_config():
             password_client = r[2]
             address_client = r[3]
             email_client = r[4]
+            code_business_client = r[5]
             user_type_client = 2 # Usuario normal
 
 
@@ -353,6 +356,7 @@ def msg_config():
             new = User(
                 # request.json['id'],
                 position,
+                code_business_client.text,
                 name_client.text,
                 nit_client,
                 address_client.text,

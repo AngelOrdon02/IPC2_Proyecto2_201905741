@@ -1,6 +1,7 @@
 '''
 * Usuario (User)
 - id (id)
+- codigo_empresa (code_business)
 - nombre (name)
 - nit (nit)
 - direccion (address)
@@ -12,8 +13,9 @@
 
 class User:
 
-    def __init__(self, id, name, nit, address, email, username, password, user_type):
+    def __init__(self, id, code_business, name, nit, address, email, username, password, user_type):
         self.id = id
+        self.code_business = code_business
         self.name = name
         self.nit = nit
         self.address = address
@@ -29,6 +31,13 @@ class User:
 
     def setId(self, id):
         self.id = id
+
+    # code_business
+    def getCode_business(self):
+        return self.code_business
+    
+    def setCode_business(self, code_business):
+        self.code_business = code_business
 
     # name
     def getName(self):

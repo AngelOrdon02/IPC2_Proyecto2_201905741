@@ -54,9 +54,14 @@ def users(request):
 
 # Create user
 def add_user(request):
+
+    # dropdown
+    response = requests.get('http://127.0.0.1:3000/business')
+    business = response.json()
     
     if request.method == 'POST':
         id = request.POST.get('id', None)
+        code_business = request.POST.get('code_business', None)
         name = request.POST.get('name', None)
         nit = request.POST.get('nit', None)
         address = request.POST.get('address', None)
@@ -67,6 +72,7 @@ def add_user(request):
 
         params = {
             'id': id,
+            'code_business': code_business,
             'name': name,
             'nit': nit,
             'address': address,
@@ -81,7 +87,7 @@ def add_user(request):
 
         return redirect('users')
 
-    return render(request, "administration/userNewView.html", {})
+    return render(request, "administration/userNewView.html", {'business': business['business']})
 
 # Metodo para la vista businessView.html
 def business(request):

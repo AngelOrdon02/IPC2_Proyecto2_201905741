@@ -22,6 +22,18 @@
                     <input type="text" id="id" name="id" placeholder="Id">
                 </div> -->
                 <div class="field">
+                    <label>Empresa</label>
+                    <!-- <input type="text" id="id_business" name="id_business" placeholder="Empresa"> -->
+                    <select class="ui fluid dropdown" name="code_business" id="code_business">
+                        <!-- <option value="">State</option> -->
+                        {% for x in business %}
+                        <option value="{{ x.code }}">{{ x.name }}</option>
+                        {% endfor %}
+                        <!-- <option value="AL">Alabama</option>
+                        <option value="CT">Connecticut</option> -->
+                    </select>
+                </div>
+                <div class="field">
                     <label>Nombre</label>
                     <input type="text" id="name" name="name" placeholder="Nombre">
                 </div>
