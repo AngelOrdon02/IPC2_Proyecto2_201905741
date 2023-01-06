@@ -181,8 +181,41 @@
         headers: {
             'Content-Type': 'application/json'
         }
+        // }).then(res => res.json())
+        // .then(res => console.log(res));
         }).then(res => res.json())
-        .then(res => console.log(res));
+        .then(
+            function (response) {
+                // console.log(response.status);
+                if (response['status'] == '200') {
+                    console.log("Exito");
+
+                    cont_playlists = response['playlists'];
+                    cont_users = response['users'];
+                    cont_business = response['business'];
+
+                    swal({
+                        title: '¡El archivo fue cargado exitosamente!',
+                        text: 
+                            "- " + cont_business + " nuevas empresas creadas. \n" +
+                            "- " + cont_users + " nuevos clientes creados. \n" +
+                            "- " + cont_playlists + " nuevas playlists creadas. \n",
+                        icon: 'success',
+                    }).then((value) => {
+                        location.href = "http://localhost:8000/users"
+                    });
+
+                    // swal("¡El archivo fue cargado exitosamente!", cont_users + " nuevos clientes creados.", "success")
+                    //     .then((value) => {
+                    //         location.href = "http://localhost:8000/users"
+                    //     });
+
+                    // console.log("Playlists add: " + cont_playlists);
+                } else if (response['status'] == '400') {
+                    console.log("error");
+                }
+            }
+        );
     }
 
     // ---------- Consumo ----------

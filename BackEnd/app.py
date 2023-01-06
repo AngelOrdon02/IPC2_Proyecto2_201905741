@@ -243,13 +243,18 @@ def msg_config():
     global Business_array
     global Playlists
     global Songs
+
+    # Contadores para answer
+    cont_playlists = 0
+    cont_users = 0
+    cont_business = 0
     
     # Codigo
     # data = request.json()
     data_answer = request.json['data']
     
     if (data_answer == ''):
-        answer = jsonify({'message': 'None data'})
+        answer = jsonify({'status': '400', 'message': 'None data'})
     else:
         # xml = data_answer.data.decode('utf-8')
         # raiz = ET.XML(data_answer)
@@ -290,6 +295,7 @@ def msg_config():
                 # compact_xml.text
             )
             Playlists.append(new_playlist)
+            cont_playlists += 1 # Contador
 
             # Canciones
             songs_data = r.text.replace('\n', '')
@@ -356,6 +362,7 @@ def msg_config():
                 user_type_client
             )
             Users.append(new)
+            cont_users += 1 # contador
 
             # Users.append(User(position, name_client, nit_client, address_client, email_client, username_client, password_client, user_type_client))
         
@@ -374,12 +381,14 @@ def msg_config():
                 name_business.text
             )
             Business_array.append(new)
+            cont_business += 1 # contador
 
         # for r in root:
         #     variable = r[0][0]
         #     print("var: ", str(variable.text))
 
-        answer = jsonify({'message': data_answer})
+        # answer = jsonify({'message': data_answer}),200
+        answer = jsonify({'status': '200', 'playlists': cont_playlists, 'users': cont_users, 'business': cont_business})
     return (answer)
 
 # --------------- FIN RUTAS ---------------
