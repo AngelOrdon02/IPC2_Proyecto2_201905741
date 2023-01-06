@@ -149,6 +149,17 @@ def insertUser():
 
     return (answer)
 
+# Delet user
+@app.route('/users/<int:id>', methods=['DELETE'])
+def deleteUser(id):
+    global Users
+    for i in range(len(Users)):
+        if id == Users[i].getId():
+            del Users[i]
+            break
+    answer = jsonify({'message': 'User Deleted'})
+    return (answer)
+
 # --------------- Business ---------------
 
 # Get business

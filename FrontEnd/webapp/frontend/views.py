@@ -89,6 +89,18 @@ def add_user(request):
 
     return render(request, "administration/userNewView.html", {'business': business['business']})
 
+# Metodo para eliminar user
+def del_user(request, id):
+    # response = requests.delete('http://127.0.0.1:3000/users/${id}')
+    # response = requests.delete('http://127.0.0.1:3000/users/1')
+    response_delete = requests.delete('http://127.0.0.1:3000/users/' + id)
+
+    # para mostrar la vista de users
+    response = requests.get('http://127.0.0.1:3000/users')
+    users = response.json()
+    return render(request, "administration/usersView.html", {'users': users['users']})
+    # pass
+
 # Metodo para la vista businessView.html
 def business(request):
 

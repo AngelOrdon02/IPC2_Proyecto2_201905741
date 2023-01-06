@@ -41,6 +41,7 @@
             <th class="centered">Dirección</th>
             <th class="centered">Nombre de usuario</th>
             <th class="centered">Correo</th>
+            <th class="centered">Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -52,6 +53,11 @@
             <td class="centerd">{{ user.address }}</td>
             <td class="centerd">{{ user.username }}</td>
             <td class="centerd">{{ user.email }}</td>
+            <td>
+                <a href="{% url 'user_del' id=user.id %}">
+                    <button class="ui red button" data-inverted="" data-tooltip="Eliminar" data-position="top" onclick=""><i class="trash alternate icon"></i></button>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

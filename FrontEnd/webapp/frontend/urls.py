@@ -10,6 +10,7 @@ urlpatterns = [
     # Administration
     path('user_new', views.add_user, name = 'user_new'),
     path('users', views.users, name = 'users'),
+    path('users/<str:id>', views.del_user, name = 'user_del'),
     path('setting', views.setting, name = 'setting'),
     path('business', views.business, name = 'business'),
     path('business_new', views.add_business, name = 'business_new'),
